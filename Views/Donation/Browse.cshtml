@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Assignment1.Models.Students>
+
+@{
+    ViewData["Title"] = "Students List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Select Students from @ViewBag.Course Course Which You want to help</h1>
+
+<section>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-4 mb-3">
+                <div class="card mb-3 text-center h-75">
+                    <div class="card-body">
+                        <a asp-controller="Donation" asp-action="StudentDetails" asp-route-student="@item.Name">@item.Name</a>
+                        <h5>Fees per Credit @String.Format("{0:c}",item.Price)</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>    

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Assignment1.Models.Carts>
+
+@{
+    ViewData["Title"] = "Carts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal total = 0;
+}
+
+<h1>Donation Box</h1>
+
+<p>
+ 
+</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Students.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credits)
+            </th>
+            <th class="text-right">
+                Fees per credit
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) 
+{
+    total += item.Credits * item.Price;
+        <tr>          
+            <td>
+                @Html.DisplayFor(modelItem => item.Students.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credits)
+            </td>
+            <td class="text-right">
+                @String.Format("{0:c}",item.Price)
+            </td>
+            
+            <td>
+      
+                <a asp-action="RemoveFromCarts" asp-route-id="@item.CartId" onclick="return confirmDelete();">Delete</a>
+            </td>
+        </tr>
+}
+        <tr>
+            <td colspan="2"></td>
+            <td class="text-right"> @String.Format("{0:c}", total)</td>
+            <td>
+                <a asp-controller="Donation" asp-action="Index" class="btn btn-primary"> << Keep Donating</a>
+                <a asp-controller="Donation" asp-action="Checkout" class="btn btn-primary">< Checkout >></a>
+            </td>
+            </tr>
+    </tbody>
+</table>

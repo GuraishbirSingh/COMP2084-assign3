@@ -1,0 +1,53 @@
+﻿@model Assignment1.Models.Students
+
+@{
+    ViewData["Title"] = "StudentDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Student Details</h1>
+<form asp-action="AddToCarts">
+    <div>
+
+        <hr />
+        <dl class="row" >
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StudentId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StudentId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nationality)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nationality)
+            </dd>
+            <dt class="col-sm-2">
+                Fees per Credit
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                No of Credits want to donate
+            </dt>
+            <dd class="col-sm-10">
+               <input name="Credits" id="Credits" required-type="number" min="1" />
+                <input name="StudentId" id="StudentId" value="@Model.StudentId" type="hidden" />
+            </dd>
+
+        </dl>
+    </div>
+    <div class="offset-2">
+        <button class="btn btn-primary"> Add To Donation Box</button>
+        <a href="javascript:history.go(-1);" class="btn btn-primary"><< Back to Students List</a>
+    </div>
+</form>
